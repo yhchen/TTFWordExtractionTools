@@ -1,3 +1,4 @@
+const startTick = Date.now();
 import * as fs from 'fs';
 import * as path from 'path';
 import * as argv from 'argv';
@@ -86,4 +87,6 @@ function main(): number {
     return execute(filters, srcTTF, outTTF);
 }
 // execute main
-process.exit(main());
+const ret = main();
+console.log(`total use time : ${(Date.now() - startTick) / 1000}s`);
+process.exit(ret);

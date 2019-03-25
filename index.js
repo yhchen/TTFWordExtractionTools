@@ -7,6 +7,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const startTick = Date.now();
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
 const argv = __importStar(require("argv"));
@@ -91,5 +92,7 @@ function main() {
     return works_1.execute(filters, srcTTF, outTTF);
 }
 // execute main
-process.exit(main());
+const ret = main();
+console.log(`total use time : ${(Date.now() - startTick) / 1000}s`);
+process.exit(ret);
 //# sourceMappingURL=index.js.map

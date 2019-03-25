@@ -1,6 +1,6 @@
 {
   "name": "ttfwordextractiontools",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Auto extration part of words from TTF, and make ttf file smaller.",
   "main": "index.js",
   "scripts": {
@@ -21,8 +21,7 @@
   "homepage": "https://github.com/yhchen/TTFWordExtractionTools#readme",
   "dependencies": {
     "argv": "0.0.2",
-    "micromatch": "^3.1.10",
-    "npm": "^6.9.0"
+    "micromatch": "^3.1.10"
   },
   "devDependencies": {
     "@types/argv": "0.0.4",
