@@ -1,0 +1,31 @@
+{
+  "name": "ttfwordextractiontools",
+  "version": "1.0.0",
+  "description": "Auto extration part of words from TTF, and make ttf file smaller.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yhchen/TTFWordExtractionTools.git"
+  },
+  "keywords": [
+    "ttf"
+  ],
+  "author": "yhchen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yhchen/TTFWordExtractionTools/issues"
+  },
+  "homepage": "https://github.com/yhchen/TTFWordExtractionTools#readme",
+  "dependencies": {
+    "micromatch": "^3.1.10",
+    "npm": "^6.9.0"
+  },
+  "devDependencies": {
+    "@types/micromatch": "^3.1.0",
+    "@types/node": "^11.11.6",
+    "typescript": "^3.3.4000"
+  }
+}
