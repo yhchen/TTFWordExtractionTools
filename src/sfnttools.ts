@@ -62,7 +62,7 @@ export function executeSfntTool(srcTTF: string, outTTF: string, s: string): numb
     const tooldir = path.join(path.dirname(process.argv[1]), 'tools', 'sfnttool.jar');
     const cmd = `java -jar ${tooldir} -s "${s}" ${srcTTF} ${outTTF} 2>&1`;
     console.log('Start Gen New TTF file...');
-    console.log(`Execute Command :\n${cmd}\n\n`);
+    console.log(`Execute Command :\n${cmd}\n`);
     try {
         const buffer = child_process.execSync(cmd, {stdio: 'pipe', encoding: 'buffer', windowsHide: true,});
         console.log(buffer.toString());

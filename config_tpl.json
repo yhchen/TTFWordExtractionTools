@@ -1,6 +1,0 @@
-{
-    "filters": [
-        "test/**/*.txt"
-    ],
-    "encoding" : "utf8"
-}

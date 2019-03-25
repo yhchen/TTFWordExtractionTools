@@ -13,9 +13,14 @@
                 "${workspaceFolder}/**/*.js"
             ],
             "args": [
+                "-s",
                 "test/youyuan.ttf",
+                "-o",
                 "test/out_youyuan.ttf",
-                "config_tpl.json"
+                "-e",
+                "utf8",
+                "-l",
+                "test/**/*.txt,!test/**/*.ttf,",
             ]
         }
     ]
