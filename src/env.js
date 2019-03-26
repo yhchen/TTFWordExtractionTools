@@ -12,15 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const gEnv = {
     sRootDir: process.cwd(),
     defualtEncoding: 'utf8',
+    setDefaultEncoding(encoding) {
+        this.defualtEncoding = encoding;
+        console.log(`Default Encoding is : ${encoding}`);
+    }
 };
-/**
- * set default file encoding
- * @param encode default encode
- */
-function setDefaultEncode(encode) {
-    gEnv.defualtEncoding = encode;
-}
-exports.setDefaultEncode = setDefaultEncode;
 /**
  * global env values
  */

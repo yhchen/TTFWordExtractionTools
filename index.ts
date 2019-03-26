@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as argv from 'argv';
 import {execute} from './src/works';
-import {Env, setDefaultEncode} from './src/env';
+import {Env} from './src/env';
 
 function printHelp() {
     console.error('Usage :');
@@ -80,7 +80,7 @@ function main(): number {
         return -3;
     }
     if (args.options[ParamEncoding]) {
-        setDefaultEncode(args.options[ParamEncoding]);
+        Env.setDefaultEncoding(args.options[ParamEncoding]);
     }
     const filters = new Array<string>();
     const origin_filters: Array<string> = args.options[ParamFilters];

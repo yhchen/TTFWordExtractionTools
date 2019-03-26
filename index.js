@@ -85,7 +85,7 @@ function main() {
         return -3;
     }
     if (args.options[ParamEncoding]) {
-        env_1.setDefaultEncode(args.options[ParamEncoding]);
+        env_1.Env.setDefaultEncoding(args.options[ParamEncoding]);
     }
     const filters = new Array();
     const origin_filters = args.options[ParamFilters];

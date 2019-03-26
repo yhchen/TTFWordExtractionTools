@@ -11,23 +11,28 @@
 const gEnv = {
     sRootDir : process.cwd(), // work root dir
     defualtEncoding : 'utf8', // default encoding
-}
-
-/**
- * set default file encoding
- * @param encode default encode
- */
-export function setDefaultEncode(encode: string): void {
-    gEnv.defualtEncoding = encode;
+    setDefaultEncoding(encoding: string): void { // set default file encoding
+        this.defualtEncoding = encoding;
+        console.log(`Default Encoding is : ${encoding}`);
+    }
 }
 
 
 /**
  * make Type readonly recursive
  */
-export type DeepReadonly<T> = {
+export type DeepReadonly<T> =
+    T extends (infer R)[] ? DeepReadonlyArray<R> :
+    T extends Function ? T :
+    T extends object ? DeepReadonlyObject<T> :
+    T;
+
+export interface DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> {}
+
+export type DeepReadonlyObject<T> = {
     readonly [P in keyof T]: DeepReadonly<T[P]>;
-}
+};
+
 
 /**
  * global env values
