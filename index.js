@@ -64,6 +64,8 @@ argv.option([
     },
 ]);
 function resolvePath(s) {
+    if (!s)
+        return '';
     if (path.isAbsolute(s))
         return s;
     return path.join(env_1.Env().sRootDir, s);

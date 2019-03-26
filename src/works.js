@@ -12,7 +12,8 @@ const path = __importStar(require("path"));
 const match_utils = __importStar(require("./match_utils"));
 const sfnt_tools = __importStar(require("./sfnttools"));
 const env_1 = require("./env");
-const SkipCharList = new Set([' ', '"', "'", '\n', '\0']);
+const SkipCharList = new Set(['\n', '\0', '\r', '"']);
+const ConvertCharList = new Map([['^', '^^'], ['<', '^<'], ['>', '^>'], ['|', '^|'], ['&', '^&'], ['"', '""'], ['%', '%%']]);
 function execute(srcTTFFile, outTTFFile, pathFilter, filelist) {
     const collection = new Set();
     let s = '';
@@ -37,7 +38,8 @@ function execute(srcTTFFile, outTTFFile, pathFilter, filelist) {
     for (const f of sFileList) {
         console.log(`match file : ${f}`);
         const content = fs.readFileSync(f, { encoding: env_1.Env().defualtEncoding, flag: 'r' });
-        for (const c of content) {
+        for (let c of content) {
+            c = ConvertCharList.get(c) || c;
             if (SkipCharList.has(c))
                 continue;
             if (collection.has(c))

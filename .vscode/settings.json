@@ -4,5 +4,6 @@
         "**/*.js.map": true,
         "node_modules": true,
         "package-lock.json": true
-    }
+    },
+    "editor.insertSpaces": false
 }

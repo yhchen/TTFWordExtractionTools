@@ -7,7 +7,8 @@ import * as match_utils from './match_utils';
 import * as sfnt_tools from './sfnttools';
 import { Env } from './env';
 
-const SkipCharList = new Set<string>([' ', '"', "'", '\n', '\0']);
+const SkipCharList = new Set<string>(['\n', '\0', '\r', '"']);
+const ConvertCharList = new Map<string, string>([['^', '^^'], ['<', '^<'], ['>', '^>'], ['|', '^|'], ['&', '^&'], ['"', '""'], ['%', '%%']]);
 
 export function execute(srcTTFFile: string, outTTFFile: string, pathFilter: string[], filelist: string[]) : number {
     const collection = new Set<string>();
@@ -35,7 +36,8 @@ export function execute(srcTTFFile: string, outTTFFile: string, pathFilter: stri
     for (const f of sFileList) {
         console.log(`match file : ${f}`);
         const content = fs.readFileSync(f, {encoding:Env().defualtEncoding, flag:'r'});
-        for (const c of content) {
+        for (let c of content) {
+            c = ConvertCharList.get(c) || c;
             if (SkipCharList.has(c)) continue;
             if (collection.has(c)) continue;
             collection.add(c);
