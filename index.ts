@@ -18,6 +18,7 @@ const ParamSrcTTF = 'src-ttf';
 const ParamOutTTF = 'out-ttf';
 const ParamEncoding = 'encoding';
 const ParamFilters = 'list-filters';
+const ParamFileList = 'file-list';
 
 // gen args
 argv.option([
@@ -25,28 +26,35 @@ argv.option([
         name:       ParamSrcTTF,
         short:      's',
         type:       'path',
-        description:'origin ttf file to extra',
+        description:'Origin ttf file to extra',
         example:    '${path_relative_to_cwd}/origin.ttf',
     },
     {
         name:       ParamOutTTF,
         short:      'o',
         type:       'path',
-        description:'output ttf file',
+        description:'Output ttf file',
         example:    '${path_relative_to_cwd}/out.ttf',
     },
     {
         name:       ParamEncoding,
         short:      'e',
         type:       'string',
-        description:'output ttf file',
+        description:'Output ttf file',
         example:    '${path_relative_to_cwd}/out.ttf',
     },
     {
         name:       ParamFilters,
         short:      'l',
-        type:       'string',
-        description:'the input src files. split with ",". if the path first character is "!" means exclude that path.',
+        type:       'list,string',
+        description:'Input search filters relative to de ${cwd} path. Multi input split with ";". If the path first character is "!" means exclude that path',
+        example:    'src/**/*.txt,!test/**/*',
+    },
+    {
+        name:       ParamFileList,
+        short:      'f',
+        type:       'list,string',
+        description:'Input src files. split with ";"',
         example:    'src/**/*.txt,!test/**/*',
     },
 ]);
@@ -73,20 +81,38 @@ function main(): number {
     if (args.options[ParamEncoding]) {
         setDefaultEncode(args.options[ParamEncoding]);
     }
-    if (!args.options[ParamFilters]) {
-        console.error(`ERROR : list-filters (-l) must be set!`);
+    const filters = new Array<string>();
+    const origin_filters: Array<string> = args.options[ParamFilters];
+    for (const l of origin_filters) {
+        const sp = l.trim().split(';');
+        for (let s of sp) {
+            s = s.trim();
+            if (s == '') continue;
+            filters.push(s);
+        }
+    }
+
+    const origin_filelist: Array<string> = args.options[ParamFileList];
+    const filelist = new Array<string>();
+    for (const l of origin_filelist) {
+        const sp = l.trim().split(';');
+        for (let s of sp) {
+            s = s.trim();
+            if (s == '') continue;
+            filelist.push(s);
+        }
+    }
+
+    if (filelist.length <= 0 && filters.length <= 0) {
+        console.error(`ERROR : one of [list-filters (-l)] or [file-list (-f)] must be set!`);
         printHelp();
         return -2;
     }
-    const origin_filters: Array<string> = args.options[ParamFilters].split(',');
-    const filters = new Array<string>();
-    for (const s of origin_filters) {
-        if (s.trim() == '') continue;
-        filters.push(s);
-    }
-    return execute(filters, srcTTF, outTTF);
+    return execute(srcTTF, outTTF, filters, filelist);
 }
 // execute main
 const ret = main();
-console.log(`total use time : ${(Date.now() - startTick) / 1000}s`);
+if (ret == 0) {
+    console.log(`total use time : ${(Date.now() - startTick) / 1000}s`);
+}
 process.exit(ret);

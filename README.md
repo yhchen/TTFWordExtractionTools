@@ -4,31 +4,36 @@ Auto extration part of words from TTF, and make ttf file smaller.
 
 ## Usage
 
-```shell
+```sh
 
 Usage: node index.js [options]
 
         --help, -h
                 Displays help information about this script
-                'index.js -h' or 'index.js --help'
+                'node index.js -h' or 'node index.js --help'
 
         --version
                 Displays version info
-                index.js --version
+                node index.js --version
 
         --src-ttf, -s
-                origin ttf file to extra
+                Origin ttf file to extra
                 ${path_relative_to_cwd}/origin.ttf
 
         --out-ttf, -o
-                output ttf file
+                Output ttf file
                 ${path_relative_to_cwd}/out.ttf
 
         --encoding, -e
-                output ttf file
+                Output ttf file
                 ${path_relative_to_cwd}/out.ttf
 
-        --filters, -f
-                the input src files. split with ",". if the path first character is "!" means exclude that path.
+        --list-filters, -l
+                Input search filters relative to de ${cwd} path. Multi input split with ";". If the path first character is "!" means exclude that path
                 src/**/*.txt,!test/**/*
+
+        --file-list, -f
+                Input src files. split with ";"
+                src/**/*.txt,!test/**/*
+
 ```

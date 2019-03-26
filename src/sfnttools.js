@@ -23,24 +23,24 @@ function checkJavaVersion() {
         const buff = child_process_1.default.execSync('java -version 2>&1', { stdio: 'pipe', encoding: 'buffer', windowsHide: true, });
         const ss = buff.toString().split('\n');
         if (ss.length < 0) {
-            console.error('java version incorrect! please install java version 1.8 or greater!');
+            console.error('ERROR : java version incorrect! please install java version 1.8 or greater!');
             return -1002;
         }
         const v = ss[0].split('"');
         if (v.length <= 2) {
-            console.error('java version incorrect! please install java version 1.8 or greater!');
+            console.error('ERROR : java version incorrect! please install java version 1.8 or greater!');
             return -1003;
         }
         const sJavaVersion = v[1];
         const verarr = sJavaVersion.split('.');
         if (verarr.length < 3 || parseInt(verarr[0]) < 1 || parseInt(verarr[1]) < 8) {
-            console.error(`java version "${sJavaVersion}" incorrect! please install java version 1.8 or greater!`);
+            console.error(`ERROR : java version "${sJavaVersion}" incorrect! please install java version 1.8 or greater!`);
             return -1004;
         }
         console.log(`found java version = ${sJavaVersion}`);
     }
     catch (ex) {
-        console.error(`java is need by this tools! please install jre first!`);
+        console.error(`ERROR : java is need by this tools! please install jre first!`);
         return -1001;
     }
     return 0;
@@ -59,7 +59,7 @@ Prototype font subsetter
  */
 function executeSfntTool(srcTTF, outTTF, s) {
     if (!fs.existsSync(srcTTF)) {
-        console.error(`source ttf file ${srcTTF} not found!`);
+        console.error(`ERROR : source ttf file ${srcTTF} not found!`);
         return -2001;
     }
     const checkRet = checkJavaVersion();
@@ -80,11 +80,11 @@ function executeSfntTool(srcTTF, outTTF, s) {
     }
     catch (ex) {
         console.error(ex.toString());
-        console.error('Build TTF [Failure]!');
+        console.error('ERROR : Build TTF [Failure]!');
         return -2002;
     }
     if (!fs.existsSync(outTTF)) {
-        console.error('Build TTF [Failure]!');
+        console.error('ERROR : Build TTF [Failure]!');
     }
     console.log('Build TTF [SUCCESS]');
     return 0;

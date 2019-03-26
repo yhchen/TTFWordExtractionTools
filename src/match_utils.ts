@@ -19,7 +19,7 @@ class MatchFilter {
 export function findMatchFiles(filterSList: string[], dir: string, outFileLst: Array<string>): boolean {
     const mf = genMatchFilter(filterSList, dir);
     if (!mf) {
-        console.error('generate file list filter failure!');
+        console.error('ERROR : generate file list filter failure!');
         return false;
     }
     fs_utils.foreachFolder(dir, (spath, isDir) => {

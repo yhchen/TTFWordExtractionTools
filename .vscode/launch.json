@@ -12,6 +12,7 @@
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
+            "cwd": "${workspaceFolder}",
             "args": [
                 "-s",
                 "test/youyuan.ttf",
@@ -20,7 +21,11 @@
                 "-e",
                 "utf8",
                 "-l",
-                "test/**/*.txt,!test/**/*.ttf,",
+                "test/**/*.txt;!test/**/*.ttf;",
+                "-l",
+                "!test/**/*.txt.bak",
+                "-f",
+                "test/include_en.txt;test/include_num.txt"
             ]
         }
     ]

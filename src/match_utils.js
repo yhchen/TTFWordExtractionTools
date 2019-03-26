@@ -27,7 +27,7 @@ class MatchFilter {
 function findMatchFiles(filterSList, dir, outFileLst) {
     const mf = genMatchFilter(filterSList, dir);
     if (!mf) {
-        console.error('generate file list filter failure!');
+        console.error('ERROR : generate file list filter failure!');
         return false;
     }
     fs_utils.foreachFolder(dir, (spath, isDir) => {

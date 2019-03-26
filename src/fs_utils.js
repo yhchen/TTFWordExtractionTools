@@ -108,7 +108,7 @@ function copyFile(src, dest) {
         fs.copyFileSync(src, dest);
     }
     catch (err) {
-        console.error('copy file [' + src + '] to path [' + dest + '] failure!!!');
+        console.error('ERROR : copy file [' + src + '] to path [' + dest + '] failure!!!');
         console.error(JSON.stringify(err));
         return false;
     }
