@@ -20,7 +20,7 @@ function execute(srcTTFFile, outTTFFile, pathFilter, filelist) {
     let cnts = 0;
     const sFileList = new Array();
     if (pathFilter.length > 0) {
-        if (!match_utils.findMatchFiles(pathFilter, env_1.Env().sRootDir, sFileList)) {
+        if (!match_utils.findMatchFiles(pathFilter, env_1.Env.sRootDir, sFileList)) {
             console.error(`ERROR : find match files failure!`);
             return -4002;
         }
@@ -37,7 +37,7 @@ function execute(srcTTFFile, outTTFFile, pathFilter, filelist) {
     }
     for (const f of sFileList) {
         console.log(`match file : ${f}`);
-        const content = fs.readFileSync(f, { encoding: env_1.Env().defualtEncoding, flag: 'r' });
+        const content = fs.readFileSync(f, { encoding: env_1.Env.defualtEncoding, flag: 'r' });
         for (let c of content) {
             c = ConvertCharList.get(c) || c;
             if (SkipCharList.has(c))

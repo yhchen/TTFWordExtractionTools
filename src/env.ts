@@ -13,9 +13,14 @@ const gEnv = {
     defualtEncoding : 'utf8', // default encoding
 }
 
+/**
+ * set default file encoding
+ * @param encode default encode
+ */
 export function setDefaultEncode(encode: string): void {
     gEnv.defualtEncoding = encode;
 }
+
 
 /**
  * make Type readonly recursive
@@ -25,8 +30,6 @@ export type DeepReadonly<T> = {
 }
 
 /**
- * get global env values    
+ * global env values
  */
-export function Env(): DeepReadonly<typeof gEnv> {
-    return gEnv;
-}
+export const Env = <DeepReadonly<typeof gEnv>>(gEnv);

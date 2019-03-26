@@ -62,7 +62,7 @@ argv.option([
 function resolvePath(s: string): string {
     if (!s) return '';
     if (path.isAbsolute(s)) return s;
-    return path.join(Env().sRootDir, s);
+    return path.join(Env.sRootDir, s);
 }
 
 function main(): number {

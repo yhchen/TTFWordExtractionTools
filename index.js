@@ -68,7 +68,7 @@ function resolvePath(s) {
         return '';
     if (path.isAbsolute(s))
         return s;
-    return path.join(env_1.Env().sRootDir, s);
+    return path.join(env_1.Env.sRootDir, s);
 }
 function main() {
     const args = argv.run(process.argv);

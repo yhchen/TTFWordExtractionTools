@@ -13,15 +13,16 @@ const gEnv = {
     sRootDir: process.cwd(),
     defualtEncoding: 'utf8',
 };
+/**
+ * set default file encoding
+ * @param encode default encode
+ */
 function setDefaultEncode(encode) {
     gEnv.defualtEncoding = encode;
 }
 exports.setDefaultEncode = setDefaultEncode;
 /**
- * get global env values
+ * global env values
  */
-function Env() {
-    return gEnv;
-}
-exports.Env = Env;
+exports.Env = (gEnv);
 //# sourceMappingURL=env.js.map

@@ -1,8 +1,5 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import StringDecoder from 'string_decoder';
-
-import * as fs_utils from './fs_utils';
 import * as match_utils from './match_utils';
 import * as sfnt_tools from './sfnttools';
 import { Env } from './env';
@@ -17,7 +14,7 @@ export function execute(srcTTFFile: string, outTTFFile: string, pathFilter: stri
 
     const sFileList = new Array<string>();
     if (pathFilter.length > 0) {
-        if (!match_utils.findMatchFiles(pathFilter, Env().sRootDir, sFileList)) {
+        if (!match_utils.findMatchFiles(pathFilter, Env.sRootDir, sFileList)) {
             console.error(`ERROR : find match files failure!`);
             return -4002;
         }
@@ -35,7 +32,7 @@ export function execute(srcTTFFile: string, outTTFFile: string, pathFilter: stri
 
     for (const f of sFileList) {
         console.log(`match file : ${f}`);
-        const content = fs.readFileSync(f, {encoding:Env().defualtEncoding, flag:'r'});
+        const content = fs.readFileSync(f, {encoding:Env.defualtEncoding, flag:'r'});
         for (let c of content) {
             c = ConvertCharList.get(c) || c;
             if (SkipCharList.has(c)) continue;
