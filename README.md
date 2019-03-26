@@ -2,6 +2,13 @@
 
 Auto extration part of words from TTF, and make ttf file smaller.
 
+## Dependency
+
+name|version
+---|---
+[JRE](https://www.oracle.com/technetwork/java/javase/downloads/index.html)|1.8.x+
+[NodeJS](https://nodejs.org/en/download/)|6.x+
+
 ## Usage
 
 ```sh
