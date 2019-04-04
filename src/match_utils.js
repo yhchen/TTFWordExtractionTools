@@ -37,7 +37,8 @@ function findMatchFiles(filterSList, dir, outFileLst) {
                     return 2 /* BreakFolder */;
                 break;
             case 1 /* match */:
-                outFileLst.push(spath);
+                if (!isDir)
+                    outFileLst.push(spath);
                 break;
             case 2 /* nmatch */: break;
         }

@@ -25,7 +25,7 @@ export function findMatchFiles(filterSList: string[], dir: string, outFileLst: A
     fs_utils.foreachFolder(dir, (spath, isDir) => {
         switch (checkPathMatchFilter(path.relative(dir, spath), mf)) {
             case EMathType.exclude:     if (isDir) return fs_utils.EFFolderBreakType.BreakFolder; break;
-            case EMathType.match:       outFileLst.push(spath); break;
+            case EMathType.match:       if (!isDir) outFileLst.push(spath); break;
             case EMathType.nmatch:      break;
         }
         return;
