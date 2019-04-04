@@ -41,10 +41,14 @@ function findMatchFiles(filterSList, dir, outFileLst) {
                 break;
             case 2 /* nmatch */: break;
         }
+        return;
     }, true);
     return true;
 }
 exports.findMatchFiles = findMatchFiles;
+function customIsAbsolutePath(s) {
+    return s.length >= 2 && (s[0] == '/' || s[1] == ':');
+}
 /**
  * generate MatchFilter struct
  * @param filterSList input filters
@@ -59,7 +63,7 @@ function genMatchFilter(filterSList, searchPath) {
             p = p.substr(1);
         }
         if (searchPath) {
-            const sPath = path.join(searchPath, p);
+            const sPath = customIsAbsolutePath(p) ? p : path.join(searchPath, p);
             const state = fs.existsSync(sPath) ? fs.statSync(sPath) : undefined;
             if (state && state.isDirectory()) {
                 p += '/**/*';

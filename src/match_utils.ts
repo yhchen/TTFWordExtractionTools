@@ -24,12 +24,17 @@ export function findMatchFiles(filterSList: string[], dir: string, outFileLst: A
     }
     fs_utils.foreachFolder(dir, (spath, isDir) => {
         switch (checkPathMatchFilter(path.relative(dir, spath), mf)) {
-        case EMathType.exclude:     if (isDir) return fs_utils.EFFolderBreakType.BreakFolder; break;
-        case EMathType.match:       outFileLst.push(spath); break;
-        case EMathType.nmatch:      break;
+            case EMathType.exclude:     if (isDir) return fs_utils.EFFolderBreakType.BreakFolder; break;
+            case EMathType.match:       outFileLst.push(spath); break;
+            case EMathType.nmatch:      break;
         }
+        return;
     }, true);
     return true;
+}
+
+function customIsAbsolutePath(s: string): boolean {
+    return s.length >= 2 && (s[0] == '/' || s[1] == ':');
 }
 
 
@@ -47,7 +52,7 @@ function genMatchFilter(filterSList: string[], searchPath?: string): MatchFilter
             p = p.substr(1);
         }
         if (searchPath) {
-            const sPath = path.join(searchPath, p);
+            const sPath = customIsAbsolutePath(p) ? p : path.join(searchPath, p);
             const state = fs.existsSync(sPath) ? fs.statSync(sPath) : undefined;
             if (state && state.isDirectory()) {
                 p += '/**/*';

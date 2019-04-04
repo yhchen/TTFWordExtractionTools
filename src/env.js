@@ -15,7 +15,8 @@ const gEnv = {
     setDefaultEncoding(encoding) {
         this.defualtEncoding = encoding;
         console.log(`Default Encoding is : ${encoding}`);
-    }
+    },
+    supportEncode: new Set(['ascii', 'utf8', 'utf16le', 'ucs2', 'latin1']),
 };
 /**
  * global env values

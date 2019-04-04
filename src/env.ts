@@ -14,7 +14,8 @@ const gEnv = {
     setDefaultEncoding(encoding: string): void { // set default file encoding
         this.defualtEncoding = encoding;
         console.log(`Default Encoding is : ${encoding}`);
-    }
+    },
+    supportEncode : new Set<string>(['ascii','utf8','utf16le','ucs2','latin1']),
 }
 
 

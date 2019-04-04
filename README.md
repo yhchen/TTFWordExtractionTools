@@ -32,8 +32,8 @@ Usage: node index.js [options]
                 ${path_relative_to_cwd}/out.ttf
 
         --encoding, -e
-                Output ttf file
-                ${path_relative_to_cwd}/out.ttf
+                file encode(ascii|utf8|utf16le|ucs2|latin1)
+                utf8
 
         --list-filters, -l
                 Input search filters relative to de ${cwd} path. Multi input split with ";". If the path first character is "!" means exclude that path

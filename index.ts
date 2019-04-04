@@ -20,6 +20,13 @@ const ParamEncoding = 'encoding';
 const ParamFilters = 'list-filters';
 const ParamFileList = 'file-list';
 
+// gen type
+argv.type('encode', function(v) {
+    if (Env.supportEncode.has(v))
+        return v;
+    throw `ERROR : encoding "${v}" not support.`;
+});
+
 // gen args
 argv.option([
     {
@@ -39,9 +46,9 @@ argv.option([
     {
         name:       ParamEncoding,
         short:      'e',
-        type:       'string',
-        description:'Output ttf file',
-        example:    '${path_relative_to_cwd}/out.ttf',
+        type:       'encode',
+        description:'file encode(ascii|utf8|utf16le|ucs2|latin1)',
+        example:    'utf8',
     },
     {
         name:       ParamFilters,
