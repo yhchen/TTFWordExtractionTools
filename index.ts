@@ -91,12 +91,14 @@ function main(): number {
     }
     const filters = new Array<string>();
     const origin_filters: Array<string> = args.options[ParamFilters];
-    for (const l of origin_filters) {
-        const sp = l.trim().split(';');
-        for (let s of sp) {
-            s = s.trim();
-            if (s == '') continue;
-            filters.push(s);
+    if (origin_filters) {
+        for (const l of origin_filters) {
+            const sp = l.trim().split(';');
+            for (let s of sp) {
+                s = s.trim();
+                if (s == '') continue;
+                filters.push(s);
+            }
         }
     }
 

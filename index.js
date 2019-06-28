@@ -95,13 +95,15 @@ function main() {
     }
     const filters = new Array();
     const origin_filters = args.options[ParamFilters];
-    for (const l of origin_filters) {
-        const sp = l.trim().split(';');
-        for (let s of sp) {
-            s = s.trim();
-            if (s == '')
-                continue;
-            filters.push(s);
+    if (origin_filters) {
+        for (const l of origin_filters) {
+            const sp = l.trim().split(';');
+            for (let s of sp) {
+                s = s.trim();
+                if (s == '')
+                    continue;
+                filters.push(s);
+            }
         }
     }
     const origin_filelist = args.options[ParamFileList];
